@@ -1,0 +1,30 @@
+
+
+.task-container{
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+    Margin: 20px;
+
+}
+
+.task-container_completed{
+    padding: 10px;
+}
+
+.task-container_information{
+    padding: 10px;
+}
+
+.task-container_date{
+    padding: 10px;
+}
+
+.task-container_category{
+    padding:10px;
+}
+
+task-container_button{
+    padding:10px;
+}
+

@@ -1,0 +1,11 @@
+button{
+    border:none;
+    background: none;
+    outline: none;
+}
+
+.button{
+    padding: 12px 30px;
+    font-weight: 600;
+    
+}
