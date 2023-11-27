@@ -40,12 +40,28 @@ function App() {
     setTareas(resultadoTareas)
   }
 
+  const completado = (id) => {
+    const resultadoTareas = tareas.map((tarea) => {
+      if (tarea.id === id) {
+        tarea.complete = !tarea.complete
+      }
+      return tarea
+    })
+
+    setTareas(resultadoTareas)
+  }
+
   return (
     <div>
       <CreateForm crearTarea={crearTarea} />
       <div className="task-card">
         {tareas.map((task) => (
-          <Task key={task.id} task={task} eliminarTarea={eliminarTarea} />
+          <Task
+            key={task.id}
+            task={task}
+            eliminarTarea={eliminarTarea}
+            completado={completado}
+          />
         ))}
       </div>
     </div>
