@@ -2,25 +2,11 @@ import "./App.css"
 import Task from "./components/Task/Task"
 import CreateForm from "./components/CreateForm/CreateForm"
 import { useState } from "react"
-const datos = [
-  {
-    id: crypto.randomUUID(),
-    complete: true,
-    information: "Cocinar",
-    date: Date.now(),
-    category: "Cocina",
-  },
-  {
-    id: crypto.randomUUID(),
-    complete: false,
-    information: "Limpiar",
-    date: Date.now(),
-    category: "Limpieza",
-  },
-]
 
 function App() {
-  const [tareas, setTareas] = useState(datos)
+  const [tareas, setTareas] = useState([])
+  const [editando, setEditando] = useState(false)
+  const [tarea, setTarea] = useState({})
 
   const crearTarea = (nuevaTarea) => {
     setTareas([
@@ -51,9 +37,31 @@ function App() {
     setTareas(resultadoTareas)
   }
 
+  const editarTarea = (id, tareaModificada) => {
+    const nuevaTareas = tareas.map((tarea) =>
+      tarea.id == id ? { ...tarea, ...tareaModificada } : tarea
+    )
+    setTareas(nuevaTareas)
+  }
+
+  const editar = (tarea) => {
+    setEditando(true)
+    setTarea(tarea)
+  }
+
+  const cambiarEditando = (bool) => {
+    setEditando(bool)
+  }
+
   return (
     <div>
-      <CreateForm crearTarea={crearTarea} />
+      <CreateForm
+        crearTarea={crearTarea}
+        editando={editando}
+        tarea={tarea}
+        editarTarea={editarTarea}
+        cambiarEditando={cambiarEditando}
+      />
       <div className="task-card">
         {tareas.map((task) => (
           <Task
@@ -61,6 +69,7 @@ function App() {
             task={task}
             eliminarTarea={eliminarTarea}
             completado={completado}
+            editar={editar}
           />
         ))}
       </div>

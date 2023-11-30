@@ -1,3 +1,7 @@
+* {
+  box-sizing: content-box;
+}
+
 .task-card{
   display:flex;
   justify-content: center;

@@ -4,13 +4,25 @@ import "./CreateForm.css"
 import Button from "../Button/Button"
 
 const CreateForm = (props) => {
-  const { crearTarea } = props
+  const {
+    crearTarea,
+    editando = false,
+    tarea,
+    editarTarea,
+    cambiarEditando,
+  } = props
   const [information, setInformation] = useState("")
   const [category, setCategory] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    crearTarea({ information, category })
+
+    if (editando) {
+      editarTarea(tarea.id, { information, category })
+      cambiarEditando(false)
+    } else {
+      crearTarea({ information, category })
+    }
 
     e.target.reset()
   }
@@ -24,12 +36,13 @@ const CreateForm = (props) => {
             className="form_information-field"
             type="text"
             onChange={(e) => setInformation(e.target.value)}
+            defaultValue={editando ? tarea.information : ""}
           />
         </div>
         <div className="form_category">
           <label> Categoria</label>
           <select onChange={(e) => setCategory(e.target.value)}>
-            <option value="" disabled>
+            <option value="" disabled selected>
               Selecciona una categoria
             </option>
             <option value="cocina">Cocina</option>
@@ -38,7 +51,7 @@ const CreateForm = (props) => {
           </select>
         </div>
         <div>
-          <Button title={"Crear tarea"} />
+          <Button title={editando ? "Editar tarea" : "Crear tarea"} />
         </div>
       </form>
     </div>

@@ -2,7 +2,7 @@
 import Button from "../Button/Button"
 import "./Task.css"
 
-const Task = ({ task, eliminarTarea, completado }) => {
+const Task = ({ task, eliminarTarea, completado, editar }) => {
   const { id, complete, date, information, category } = task
 
   return (
@@ -15,14 +15,29 @@ const Task = ({ task, eliminarTarea, completado }) => {
       </div>
       <div className="task-container_date">Fecha: {date}</div>
       <div className="task-container_category">Categoria: {category}</div>
-      <div>
+      <div className="button-container">
         <Button
+          className="button-container_delete"
           title={"Eliminar tarea"}
           handleClick={() => eliminarTarea(id)}
         />
         <Button
+          className="button-container_completado"
           title={`${complete ? "Pendiente" : "Completado"}`}
           handleClick={() => completado(id)}
+        />
+        <Button
+          className="button-container_edit"
+          title={"Editar tarea"}
+          handleClick={() =>
+            editar({
+              id,
+              complete,
+              date,
+              information,
+              category,
+            })
+          }
         />
       </div>
     </div>
