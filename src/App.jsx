@@ -1,7 +1,10 @@
 import "./App.css"
 import Task from "./components/Task/Task"
 import CreateForm from "./components/CreateForm/CreateForm"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Ref from "./components/Ref"
+import RenderYEfectos from "./components/RenderYEfectos"
+import Effect from "./components/Effect"
 
 function App() {
   const [tareas, setTareas] = useState([])
@@ -52,6 +55,21 @@ function App() {
   const cambiarEditando = (bool) => {
     setEditando(bool)
   }
+
+  const getTareas = async () => {
+    try {
+      const response = await fetch("/data.json")
+      const data = await response.json()
+      console.log(data)
+      setTareas(data.tarea)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getTareas()
+  }, [])
 
   return (
     <div>

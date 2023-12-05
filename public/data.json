@@ -1,0 +1,24 @@
+{
+    "tarea":[{
+        "id": 1,
+        "information":"limpiar",
+        "category":"otro",
+        "date": "01-10-2023",
+        "complete": true
+    },
+    {
+        "id": 2,
+        "information":"cocinar",
+        "category":"cocina",
+        "date": "01-10-2023",
+        "complete": true
+    },
+    {
+        "id": 3,
+        "information":"planchar",
+        "category":"otro",
+        "date": "01-10-2023",
+        "complete": false
+    }]
+
+}
